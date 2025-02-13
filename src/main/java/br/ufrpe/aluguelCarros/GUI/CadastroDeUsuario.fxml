@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.aluguelCarros.GUI.ControladorCadastro">
+   <children>
+      <Label text="Cadastro de Usuário">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNome" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="Nome:" />
+      <TextField fx:id="txtCPF" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="CPF:" />
+      <TextField fx:id="txtIdade" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="Idade:" VBox.vgrow="NEVER" />
+      <TextField fx:id="txtEmail" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="E-mail:" />
+      <TextField fx:id="txtSenha" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="Senha:" />
+      <Label text="Tipo de cadastro">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="rbUsuario" mnemonicParsing="false" onAction="#radioUsuarioSelecionado" text="Usuário" textAlignment="CENTER" />
+      <RadioButton fx:id="radioAdmin" mnemonicParsing="false" onAction="#radioAdminSelecionado" text="Administrador" textAlignment="CENTER" />
+      <TextField fx:id="txtChave" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="Digitar Chave de Acesso:" visible="false" />
+      <Button fx:id="botaoLogin" mnemonicParsing="false" onAction="#finalizarCadastro" text="Finalizar Cadastro" />
+   </children>
+</VBox>

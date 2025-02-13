@@ -5,4 +5,6 @@ module com.example.aluguelcarros {
 
     opens com.example.aluguelcarros to javafx.fxml;
     exports com.example.aluguelcarros;
+    exports br.ufrpe.aluguelCarros.GUI;
+    opens br.ufrpe.aluguelCarros.GUI to javafx.fxml;
 }
