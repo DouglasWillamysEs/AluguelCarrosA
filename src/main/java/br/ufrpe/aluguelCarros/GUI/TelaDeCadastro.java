@@ -13,7 +13,7 @@ public class TelaDeCadastro extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception a{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CadastroDeUsuario.fxml"));
         Parent root = fxmlLoader.load();
         Scene tela = new Scene(root);
