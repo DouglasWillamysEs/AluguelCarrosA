@@ -56,7 +56,7 @@ public class ControladorCadastro {
     }
 
     @FXML
-    private void radioUsuarioSelecionado() {a
+    private void radioUsuarioSelecionado() {
         txtChave.setVisible(false);
     }
 
