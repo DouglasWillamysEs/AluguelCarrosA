@@ -1,10 +1,10 @@
-package br.ufrpe.aluguelCarros.dados;
+package br.ufrpe.aluguelcarros.dados;
 
-import br.ufrpe.aluguelCarros.negocio.ControladorCarro;
-import br.ufrpe.aluguelCarros.negocio.ControladorReservas;
-import br.ufrpe.aluguelCarros.negocio.beans.Aluguel;
-import br.ufrpe.aluguelCarros.negocio.beans.Carro;
-import br.ufrpe.aluguelCarros.negocio.beans.Reserva;
+import br.ufrpe.aluguelcarros.negocio.ControladorCarro;
+import br.ufrpe.aluguelcarros.negocio.ControladorReservas;
+import br.ufrpe.aluguelcarros.negocio.beans.Aluguel;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
+import br.ufrpe.aluguelcarros.negocio.beans.Reserva;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,14 +13,22 @@ public class RepositorioAlugueis implements IRepositorioAlugueis {
     private ArrayList<Aluguel> alugueis;
     private ControladorCarro controladorCarro;
 
+
+    private static RepositorioAlugueis instance;
+
     public RepositorioAlugueis() {
         alugueis = new ArrayList<>();
+        this.controladorCarro = ControladorCarro.getInstance();
+    }
+
+    public static RepositorioAlugueis getInstance() {
+        return instance;
     }
 
     @Override
     public void adicionarAluguel(int idCarro, String cpf, LocalDateTime dataInicio, LocalDateTime dataFim, double preco, double taxaAluguel) {
 
-        Carro novoCarro = controladorCarro.buscarCarro(idCarro);
+        Carro novoCarro = ControladorCarro.getInstance().buscarCarro(idCarro);
         novoCarro.setDisponivel(false);
 
         Aluguel aluguel = new Aluguel(idCarro, cpf, dataInicio, dataFim, preco, taxaAluguel);

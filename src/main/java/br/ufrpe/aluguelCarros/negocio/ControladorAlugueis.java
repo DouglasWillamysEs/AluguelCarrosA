@@ -1,12 +1,12 @@
-package br.ufrpe.aluguelCarros.negocio;
+package br.ufrpe.aluguelcarros.negocio;
 
-import br.ufrpe.aluguelCarros.dados.IRepositorioAlugueis;
-import br.ufrpe.aluguelCarros.dados.RepositorioAlugueis;
-import br.ufrpe.aluguelCarros.dados.RepositorioCarros;
-import br.ufrpe.aluguelCarros.negocio.beans.Aluguel;
-import br.ufrpe.aluguelCarros.negocio.beans.Carro;
-import br.ufrpe.aluguelCarros.negocio.beans.Reserva;
-import br.ufrpe.aluguelCarros.negocio.beans.Usuario;
+import br.ufrpe.aluguelcarros.dados.IRepositorioAlugueis;
+import br.ufrpe.aluguelcarros.dados.RepositorioAlugueis;
+import br.ufrpe.aluguelcarros.dados.RepositorioCarros;
+import br.ufrpe.aluguelcarros.negocio.beans.Aluguel;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
+import br.ufrpe.aluguelcarros.negocio.beans.Reserva;
+import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -20,29 +20,30 @@ public class ControladorAlugueis {
     private ControladorCarro controladorCarro;
 
 
+
     public ControladorAlugueis() {
-        this.repositorioAlugueis = new RepositorioAlugueis();
-        this.controladorReservas = new ControladorReservas();
-        this.controladorUsuario = new ControladorUsuario();
-        this.controladorCarro = new ControladorCarro();
+        this.repositorioAlugueis = RepositorioAlugueis.getInstance();
+        this.controladorReservas = ControladorReservas.getInstance();
+        this.controladorUsuario = ControladorUsuario.getInstance();
+        this.controladorCarro = ControladorCarro.getInstance();
     }
 
     public void alugarCarro(int idReserva, LocalDateTime dataInicio, LocalDateTime dataFim, boolean statusPagamento, double taxaAluguel) {
 
         if(idReserva != 0) {
-            Reserva reserva = controladorReservas.procurarReserva(idReserva);
+            Reserva reserva = ControladorReservas.getInstance().procurarReserva(idReserva);
             String cpfUsuario = reserva.getCpf();
 
-            Usuario usuario = controladorUsuario.buscarUsuario(cpfUsuario);
+            Usuario usuario = ControladorUsuario.getInstance().buscarUsuario(cpfUsuario);
 
             if (usuario.getIdReservasAtivas().contains(idReserva)) {
                 int idCarro = reserva.getIdCarro();
-                Carro carro = controladorCarro.buscarCarro(idCarro);
+                Carro carro = ControladorCarro.getInstance().buscarCarro(idCarro);
 
                 long dias = ChronoUnit.DAYS.between(dataInicio, dataFim);
                 double preco = dias * carro.getPreco();
 
-                repositorioAlugueis.adicionarAluguel(idCarro, cpfUsuario, dataInicio, dataFim, preco, taxaAluguel);
+                RepositorioAlugueis.getInstance().adicionarAluguel(idCarro, cpfUsuario, dataInicio, dataFim, preco, taxaAluguel);
 
                 int idAluguel = usuario.getIdAlugueisAtivos().size() + 1;
                 usuario.addAluguelAtivo(idAluguel);
@@ -54,16 +55,16 @@ public class ControladorAlugueis {
     public void pagarAluguel(int idAluguel) {
 
         if(idAluguel != 0) {
-            Aluguel aluguel = repositorioAlugueis.buscarAluguel(idAluguel);
+            Aluguel aluguel = RepositorioAlugueis.getInstance().buscarAluguel(idAluguel);
             String cpfAluguel = aluguel.getCpfAluguel();
 
-            Usuario usuario = controladorUsuario.buscarUsuario(cpfAluguel);
+            Usuario usuario = ControladorUsuario.getInstance().buscarUsuario(cpfAluguel);
 
             if(usuario.getIdAlugueisAtivos().contains(idAluguel)) {
                 if(LocalDateTime.now().isAfter(aluguel.getDataFim())) {
                     long dias = ChronoUnit.DAYS.between(aluguel.getDataFim(), LocalDateTime.now());
 
-                    Carro carro =  controladorCarro.buscarCarro(aluguel.getIdCarroAluguel());
+                    Carro carro =  ControladorCarro.getInstance().buscarCarro(aluguel.getIdCarroAluguel());
                     double precoComMulta = aluguel.getPreco() * carro.getPreco() * aluguel.getTaxaAluguel() * dias;
                     aluguel.setPreco(precoComMulta);
 

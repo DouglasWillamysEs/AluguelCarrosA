@@ -1,4 +1,4 @@
-package br.ufrpe.aluguelCarros.negocio.beans;
+package br.ufrpe.aluguelcarros.negocio.beans;
 import java.time.LocalDateTime;
 
 public class Aluguel {

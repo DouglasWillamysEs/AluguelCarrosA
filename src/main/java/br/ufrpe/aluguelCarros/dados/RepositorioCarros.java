@@ -1,13 +1,24 @@
-package br.ufrpe.aluguelCarros.dados;
+package br.ufrpe.aluguelcarros.dados;
 
 import java.util.ArrayList;
-import br.ufrpe.aluguelCarros.negocio.beans.Carro;
+
+import br.ufrpe.aluguelcarros.negocio.ControladorCarro;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
 
 public class RepositorioCarros implements IRepositorioCarros {
     private ArrayList<Carro> carros;
 
+    private static RepositorioCarros instance;
+
     public RepositorioCarros() {
         carros = new ArrayList<>();
+    }
+
+    public static RepositorioCarros getInstance() {
+        if (instance == null) {
+            instance = new RepositorioCarros();
+        }
+        return instance;
     }
 
     @Override
@@ -46,5 +57,17 @@ public class RepositorioCarros implements IRepositorioCarros {
             }
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Carro> procurarModelo(String modelo){
+        ArrayList<Carro> resultado = new ArrayList<>();
+
+        for (Carro carro : carros) {
+            if (carro.getModelo().equalsIgnoreCase(modelo)) {
+                resultado.add(carro);
+            }
+        }
+        return resultado;
     }
 }

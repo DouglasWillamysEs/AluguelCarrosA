@@ -1,9 +1,10 @@
-package br.ufrpe.aluguelCarros.negocio;
+package br.ufrpe.aluguelcarros.negocio;
 
-import br.ufrpe.aluguelCarros.dados.IRepositorioReservas;
-import br.ufrpe.aluguelCarros.dados.RepositorioReservas;
-import br.ufrpe.aluguelCarros.negocio.beans.Reserva;
-import br.ufrpe.aluguelCarros.negocio.beans.Usuario;
+import br.ufrpe.aluguelcarros.dados.IRepositorioReservas;
+import br.ufrpe.aluguelcarros.dados.RepositorioReservas;
+import br.ufrpe.aluguelcarros.dados.RepositorioUsuario;
+import br.ufrpe.aluguelcarros.negocio.beans.Reserva;
+import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
 
 
 import java.time.LocalDateTime;
@@ -13,15 +14,27 @@ public class ControladorReservas {
 
     private ControladorUsuario controladorUsuario;
     private IRepositorioReservas repositorioReservas;
+    private static ControladorReservas instance;
+
 
     public ControladorReservas() {
-        repositorioReservas = new RepositorioReservas();
-        controladorUsuario = new ControladorUsuario();
+        repositorioReservas = RepositorioReservas.getInstance();
+        controladorUsuario = ControladorUsuario.getInstance();
     }
 
+    public static ControladorReservas getInstance() {
+        if (instance == null) {
+            synchronized (ControladorReservas.class) {
+                if (instance == null) {
+                    instance = new ControladorReservas();
+                }
+            }
+        }
+        return instance;
+    }
     public Reserva procurarReserva(int idReserva) {
         if(idReserva != 0) {
-            repositorioReservas.buscarReserva(idReserva);
+            RepositorioReservas.getInstance().buscarReserva(idReserva);
         }
         return null;
     }
@@ -29,10 +42,10 @@ public class ControladorReservas {
     public void cadastrarReserva(int idCarro, String cpf, LocalDateTime dataInicio) {
 
         if(cpf != null && !cpf.isEmpty()) {
-            Usuario novoUsuario = controladorUsuario.buscarUsuario(cpf);
+            Usuario novoUsuario = ControladorUsuario.getInstance().buscarUsuario(cpf);
 
             if(novoUsuario.isCadastrado()) {
-                repositorioReservas.criarReserva(idCarro, cpf, dataInicio);
+                RepositorioReservas.getInstance().criarReserva(idCarro, cpf, dataInicio);
             }
         }
     }

@@ -1,20 +1,34 @@
-package br.ufrpe.aluguelCarros.negocio;
+package br.ufrpe.aluguelcarros.negocio;
 
-import br.ufrpe.aluguelCarros.dados.RepositorioCarros;
-import br.ufrpe.aluguelCarros.negocio.beans.Carro;
+import br.ufrpe.aluguelcarros.dados.RepositorioCarros;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
+
+import java.util.ArrayList;
 
 public class ControladorCarro {
 
     private RepositorioCarros repositorioCarros;
+    private static ControladorCarro instance;
 
     public ControladorCarro() {
-        repositorioCarros = new RepositorioCarros();
+        repositorioCarros = RepositorioCarros.getInstance();
+    }
+
+    public static ControladorCarro getInstance() {
+        return instance;
     }
 
     public Carro buscarCarro(int id) {
         if(id != 0){
-            repositorioCarros.procurarCarro(id);
+            RepositorioCarros.getInstance().procurarCarro(id);
         }
         return null;
+    }
+
+    public ArrayList<Carro> procurarModelo(String modelo) {
+        if(modelo != null){
+            RepositorioCarros.getInstance().procurarModelo(modelo);
+        }
+    return null;
     }
 }

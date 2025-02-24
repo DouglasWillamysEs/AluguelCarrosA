@@ -1,19 +1,32 @@
-package br.ufrpe.aluguelCarros.dados;
+package br.ufrpe.aluguelcarros.dados;
 
-import br.ufrpe.aluguelCarros.negocio.beans.Administrador;
-import br.ufrpe.aluguelCarros.negocio.beans.Usuario;
+import br.ufrpe.aluguelcarros.negocio.ControladorUsuario;
+import br.ufrpe.aluguelcarros.negocio.beans.Administrador;
+import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
 import java.util.ArrayList;
 
-public class RepositorioUsuario implements GerenciaConta, IRepositorioChaves{
+public class RepositorioUsuario implements GerenciaConta, IRepositorioChaves {
 
     private ArrayList<Usuario> usuarios;
     public ArrayList<Administrador> admins;
     public ArrayList<String> chaves;
+    private static RepositorioUsuario instance;
 
     public RepositorioUsuario(){
         this.usuarios = new ArrayList();
         this.admins = new ArrayList<>();
         this.chaves = new ArrayList<>();
+    }
+
+    public static RepositorioUsuario getInstance() {
+        if (instance == null) {
+            synchronized (RepositorioUsuario.class) {
+                if (instance == null) {
+                    instance = new RepositorioUsuario();
+                }
+            }
+        }
+        return instance;
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -43,7 +56,6 @@ public class RepositorioUsuario implements GerenciaConta, IRepositorioChaves{
 
 
     }
-
 
     @Override
     public void removerConta(String cpf){

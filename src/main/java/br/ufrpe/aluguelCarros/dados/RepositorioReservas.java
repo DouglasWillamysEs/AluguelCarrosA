@@ -1,23 +1,28 @@
-package br.ufrpe.aluguelCarros.dados;
+package br.ufrpe.aluguelcarros.dados;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-import br.ufrpe.aluguelCarros.negocio.ControladorCarro;
-import br.ufrpe.aluguelCarros.negocio.ControladorUsuario;
-import br.ufrpe.aluguelCarros.negocio.beans.Reserva;
-import br.ufrpe.aluguelCarros.negocio.beans.Carro;
-import br.ufrpe.aluguelCarros.negocio.beans.Usuario;
-import br.ufrpe.aluguelCarros.negocio.ControladorCarro;
+import br.ufrpe.aluguelcarros.negocio.ControladorCarro;
+import br.ufrpe.aluguelcarros.negocio.ControladorUsuario;
+import br.ufrpe.aluguelcarros.negocio.beans.Reserva;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
+import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
+import br.ufrpe.aluguelcarros.negocio.ControladorCarro;
 
 public class RepositorioReservas implements IRepositorioReservas {
     private ArrayList<Reserva> reservas;
-    private ControladorCarro controladorCarro = new ControladorCarro();
-    private ControladorUsuario controladorUsuario = new ControladorUsuario();
+    private static RepositorioReservas instance;
+    private ControladorCarro controladorCarro = ControladorCarro.getInstance();
+    private ControladorUsuario controladorUsuario = ControladorUsuario.getInstance();
 
     public RepositorioReservas() {
         reservas = new ArrayList<>();
+    }
+
+    public static RepositorioReservas getInstance() {
+        return instance;
     }
 
     @Override
@@ -29,7 +34,7 @@ public class RepositorioReservas implements IRepositorioReservas {
             novaReserva.setIdReserva(reservas.size() + 1);
             this.reservas.add(novaReserva);
 
-            Usuario novoUsuario = controladorUsuario.buscarUsuario(cpf);
+            Usuario novoUsuario = ControladorUsuario.getInstance().buscarUsuario(cpf);
             novoUsuario.addReservaAtiva(novaReserva.getIdReserva());
         }
     }
@@ -64,7 +69,7 @@ public class RepositorioReservas implements IRepositorioReservas {
             Reserva novaReserva = buscarReserva(idReserva);
             int idCarro = novaReserva.getIdCarro();
 
-            Carro novoCarro = controladorCarro.buscarCarro(idCarro);
+            Carro novoCarro = ControladorCarro.getInstance().buscarCarro(idCarro);
 
             long dias = ChronoUnit.DAYS.between(dataInicio, dataFim);
             double precoSimulado = dias * novoCarro.getPreco();

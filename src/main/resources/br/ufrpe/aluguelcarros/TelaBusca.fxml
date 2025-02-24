@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.aluguelcarros.GUI.ControladorBusca">
+   <children>
+      <ChoiceBox fx:id="cbHatchbacks" layoutX="409.0" layoutY="355.0" onDragDone="#hatchbacksSelecionado" prefHeight="84.0" prefWidth="1080.0" />
+      <ChoiceBox layoutX="410.0" layoutY="457.0" prefHeight="84.0" prefWidth="1080.0" />
+      <ChoiceBox layoutX="409.0" layoutY="558.0" prefHeight="84.0" prefWidth="1080.0" />
+      <ChoiceBox layoutX="413.0" layoutY="663.0" prefHeight="84.0" prefWidth="1080.0" />
+      <Label layoutX="838.0" layoutY="490.0" text="Forte e resistente, encara qualquer desafio no campo ou na cidade" />
+      <Label layoutX="479.0" layoutY="591.0" text="Sedan" />
+      <Label layoutX="484.0" layoutY="708.0" text="Suvs" />
+      <Label layoutX="474.0" layoutY="481.0" text="Picapes" />
+      <Label layoutX="840.0" layoutY="699.0" text="Grande e robusto, ideal para famílias e aventuras off-road" />
+      <Label layoutX="840.0" layoutY="591.0" text="Conforto e confiabilidade com ótimo espaço interno" />
+      <Label layoutX="463.0" layoutY="388.0" text="Hatchbacks" />
+      <Label layoutX="840.0" layoutY="388.0" text="Compacto, ágil e econômico, perfeito para a cidade" />
+      <Label layoutX="796.0" layoutY="192.0" text="Escolha o modelo">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

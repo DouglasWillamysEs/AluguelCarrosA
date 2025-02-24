@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.aluguelcarros.GUI.ControladorPerfil">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="720.0" prefWidth="1280.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="284.0" fitWidth="268.0" layoutX="58.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagem_2025-02-19_230445827.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="22.0" layoutY="431.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="334.0" text="Alterar Imagem" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Black" size="32.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="21.0" layoutY="512.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="334.0" text="Histórico De Aluguéis">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="832.0">
+               <children>
+                  <GridPane focusTraversable="true" layoutX="23.0" layoutY="172.0" prefHeight="410.0" prefWidth="798.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="54.0" prefWidth="676.0" text="Nome Completo: " textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial Black" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="675.0" text="CPF:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Black" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="54.0" prefWidth="672.0" text="E-MAIL:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Black" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="54.0" prefWidth="687.0" text="IDADE:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Black" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbNome" text="Label" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbCPF" layoutX="682.0" layoutY="95.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbEmail" layoutX="682.0" layoutY="311.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbIdade" layoutX="682.0" layoutY="527.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

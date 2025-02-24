@@ -1,21 +1,40 @@
-package br.ufrpe.aluguelCarros.negocio;
+package br.ufrpe.aluguelcarros.negocio;
 
-import br.ufrpe.aluguelCarros.negocio.beans.Usuario;
-import br.ufrpe.aluguelCarros.dados.RepositorioUsuario;
+import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
+import br.ufrpe.aluguelcarros.dados.RepositorioUsuario;
 
 public class ControladorUsuario {
 
     private RepositorioUsuario repositorioUsuario;
+    private Usuario usuarioLogado;
+    private static ControladorUsuario instance;
 
+    private ControladorUsuario() {
+        this.repositorioUsuario = RepositorioUsuario.getInstance();
+    }
 
-    public ControladorUsuario() {
-        repositorioUsuario = new RepositorioUsuario();
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
+    }
+    public static ControladorUsuario getInstance() {
+        if (instance == null) {
+            synchronized (ControladorUsuario.class) {
+                if (instance == null) {
+                    instance = new ControladorUsuario();
+                }
+            }
+        }
+        return instance;
     }
 
     public void cadastrarUsuario(String nome, String cpf, int idade, String email, String senha) {
         if(nome != null && cpf != null && email != null && senha != null){
             if(idade >= 18){
-                repositorioUsuario.cadastrarContaUser(nome, cpf, idade, email, senha);
+                RepositorioUsuario.getInstance().cadastrarContaUser(nome, cpf, idade, email, senha);
             }
         }
     }
@@ -26,25 +45,25 @@ public class ControladorUsuario {
 
     public void removerUsuario(String cpf) {
         if(cpf != null && !cpf.isEmpty()){
-            repositorioUsuario.removerConta(cpf);
+            RepositorioUsuario.getInstance().removerConta(cpf);
         }
     }
 
     public Usuario buscarUsuario(String cpf) {
         if(cpf != null && !cpf.isEmpty()){
-            return repositorioUsuario.procurarConta(cpf);
+            return RepositorioUsuario.getInstance().procurarConta(cpf);
         }
         return null;
     }
 
     public void cadastrarAdmin(String nome, String cpf, int idade, String email, String senha, String chave){
-        if(repositorioUsuario.procurarConta(cpf) == null){
+        if(RepositorioUsuario.getInstance().procurarConta(cpf) == null){
             if(chave != null && !chave.isEmpty()){
 
-                if(repositorioUsuario.procurarConta(cpf) == null){
+                if(RepositorioUsuario.getInstance().procurarConta(cpf) == null){
 
-                    if(repositorioUsuario.procurarChave(chave) == chave){
-                        repositorioUsuario.cadastrarContaAdmin(nome, cpf, idade, email, senha, chave);
+                    if(RepositorioUsuario.getInstance().procurarChave(chave) == chave){
+                        RepositorioUsuario.getInstance().cadastrarContaAdmin(nome, cpf, idade, email, senha, chave);
                     }
                 }
 
@@ -53,14 +72,14 @@ public class ControladorUsuario {
     }
 
     public void atribuirChave(String chave){
-        if(repositorioUsuario.procurarChave(chave) == null){
-            repositorioUsuario.atribuirChave(chave);
+        if(RepositorioUsuario.getInstance().procurarChave(chave) == null){
+            RepositorioUsuario.getInstance().atribuirChave(chave);
         }
     }
 
     public void RemoverChaveC(String chave) {
-        if(repositorioUsuario.procurarChave(chave) != null){
-            repositorioUsuario.removerChave(chave);
+        if(RepositorioUsuario.getInstance().procurarChave(chave) != null){
+            RepositorioUsuario.getInstance().removerChave(chave);
         }
     }
 }

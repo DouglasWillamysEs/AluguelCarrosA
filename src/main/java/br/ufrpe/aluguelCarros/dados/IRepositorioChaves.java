@@ -1,4 +1,4 @@
-package br.ufrpe.aluguelCarros.dados;
+package br.ufrpe.aluguelcarros.dados;
 
 public interface IRepositorioChaves {
 

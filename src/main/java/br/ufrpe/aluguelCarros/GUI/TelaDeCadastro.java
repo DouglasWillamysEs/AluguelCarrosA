@@ -1,4 +1,4 @@
-package br.ufrpe.aluguelCarros.GUI;
+package br.ufrpe.aluguelcarros.GUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ public class TelaDeCadastro extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CadastroDeUsuario.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/ufrpe/aluguelcarros/CadastroDeUsuario.fxml"));
         Parent root = fxmlLoader.load();
         Scene tela = new Scene(root);
 

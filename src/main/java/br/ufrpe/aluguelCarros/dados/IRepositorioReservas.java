@@ -1,8 +1,8 @@
-package br.ufrpe.aluguelCarros.dados;
+package br.ufrpe.aluguelcarros.dados;
 
-import br.ufrpe.aluguelCarros.negocio.beans.Reserva;
-import br.ufrpe.aluguelCarros.negocio.beans.Carro;
-import br.ufrpe.aluguelCarros.negocio.beans.Usuario;
+import br.ufrpe.aluguelcarros.negocio.beans.Reserva;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
+import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
 
 import java.time.LocalDateTime;
 
