@@ -2,16 +2,23 @@ package br.ufrpe.aluguelcarros.GUI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import static javafx.scene.paint.Color.GREEN;
 
 public class ControladorPagamento {
+
+    private int btnApertado = 0;
 
     @FXML
     private Button btnConfirmar;
@@ -35,7 +42,7 @@ public class ControladorPagamento {
     private Label txtAviso;
 
     @FXML
-    void confirmarSelecionado(ActionEvent event) {
+    void confirmarSelecionado(ActionEvent event) throws IOException {
 
         String numeroCartao = txtNumeroCartao.getText().replaceAll("[^0-9]", "");
         String vencimento = txtVencimento.getText().replaceAll("[^0-9/]", "");
@@ -60,6 +67,20 @@ public class ControladorPagamento {
                     txtAviso.setTextFill(GREEN);
                     txtAviso.setVisible(true);
                     txtAviso.setText("Cartão verificado!");
+
+                    btnConfirmar.setText("Voltar");
+                    btnApertado = btnApertado + 1;
+
+                    if(btnApertado == 2){
+                        Stage stage = (Stage) txtAviso.getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/ufrpe/aluguelcarros/HomePage.fxml"));
+                        Parent root = loader.load();
+                        Scene novaCena = new Scene(root);
+                        stage.setScene(novaCena);
+                        stage.show();
+                    }
+
+
          }
 
                     else{
@@ -99,3 +120,4 @@ public class ControladorPagamento {
     }
 
 }
+
