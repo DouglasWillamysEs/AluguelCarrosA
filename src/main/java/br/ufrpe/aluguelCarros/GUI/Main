@@ -1,0 +1,21 @@
+package br.ufrpe.aluguelcarros.GUI;
+
+import br.ufrpe.aluguelcarros.negocio.ControladorCarro;
+import br.ufrpe.aluguelcarros.dados.RepositorioCarros;
+import br.ufrpe.aluguelcarros.negocio.beans.Carro;
+
+public class Main {
+
+    public static void main(String[] args) {
+        ControladorCarro controladorCarro = ControladorCarro.getInstance();
+
+
+        ControladorCarro.getInstance().CadastrarCarroC("Azul", "Chevrolet", "Prisma", 120, true);
+        ControladorCarro.getInstance().CadastrarCarroC("Branco", "Chevrolet", "Prisma", 120, true);
+        Carro novoCarro = ControladorCarro.getInstance().buscarCarro(1);
+
+        System.out.println(novoCarro.getMarca());
+        System.out.println(ControladorCarro.getInstance().retornarMarcasCarros());
+
+    }
+}
