@@ -1,5 +1,8 @@
 package br.ufrpe.aluguelcarros.GUI;
 
+import br.ufrpe.aluguelcarros.dados.RepositorioCarros;
+import br.ufrpe.aluguelcarros.dados.RepositorioChaves;
+import br.ufrpe.aluguelcarros.dados.RepositorioUsuario;
 import br.ufrpe.aluguelcarros.negocio.ControladorUsuario;
 import br.ufrpe.aluguelcarros.negocio.beans.Usuario;
 import javafx.event.ActionEvent;
@@ -82,8 +85,8 @@ public class ControladorCadastro {
 
             int erros = 0;
             String cpf = txtCPF.getText().replaceAll("[^0-9]", "");
-            String chave = txtChave.getText();
             String email = txtEmail.getText().trim();
+            String chave = txtChave.getText();
             String nome = txtNome.getText();
             String senha = txtSenha.getText();
             int idade = Integer.parseInt(txtIdade.getText());
@@ -110,7 +113,9 @@ public class ControladorCadastro {
                 erros = erros + 1;
             }
 
+
             if(erros == 0) {
+
                 ControladorUsuario.getInstance().cadastrarUsuario(nome, cpf, idade, email, senha);
                 Usuario usuario = ControladorUsuario.getInstance().buscarUsuario(cpf);
 
