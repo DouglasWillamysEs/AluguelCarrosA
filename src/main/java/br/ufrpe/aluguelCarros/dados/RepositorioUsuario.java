@@ -92,12 +92,7 @@ public class RepositorioUsuario implements GerenciaConta, IRepositorioChaves {
     }
 
     @Override
-    public String procurarChave(String chave){
-        for (String chaveI : chaves) {
-            if (chaveI.equals(chave)) {
-                return chave;
-            }
-        }
-        return null;
+    public boolean existeChave(String chave) {
+        return chaves.contains(chave);
     }
 }
