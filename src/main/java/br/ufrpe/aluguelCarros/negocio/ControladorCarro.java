@@ -15,14 +15,25 @@ public class ControladorCarro {
     }
 
     public static ControladorCarro getInstance() {
+        if (instance == null) {
+            instance = new ControladorCarro();  // Inicializa a instância na primeira chamada
+        }
         return instance;
+    }
+
+    public void CadastrarCarroC(String cor, String marca, String modelo, double preco, boolean disponivel) {
+        RepositorioCarros.getInstance().cadastrarCarro(cor, marca, modelo, preco, disponivel);
     }
 
     public Carro buscarCarro(int id) {
         if(id != 0){
-            RepositorioCarros.getInstance().procurarCarro(id);
+           return RepositorioCarros.getInstance().procurarCarro(id);
         }
         return null;
+    }
+
+    public ArrayList<Carro> retornarTodosCarros() {
+        return RepositorioCarros.getInstance().retornarTodosOsCarros();
     }
 
     public ArrayList<Carro> procurarModelo(String modelo) {
@@ -31,4 +42,19 @@ public class ControladorCarro {
         }
     return null;
     }
+
+    public ArrayList<String> retornarMarcasCarros(){
+        return RepositorioCarros.getInstance().retornarMarcas();
+    }
+
+    public ArrayList<String> retornarModeloCarros(){
+        return RepositorioCarros.getInstance().retornarModelos();
+    }
+
+    public ArrayList<String> retornarCorCarros(){
+        return RepositorioCarros.getInstance().retornarCores();
+    }
+
+
 }
+
