@@ -1,1 +1,1 @@
-![Modelo Navegacional - Quadro 1](https://github.com/user-attachments/assets/486702a5-fba9-469c-81f7-63e77583653c)
+![Modelo Navegacional - Quadro 1 (1)](https://github.com/user-attachments/assets/8305148b-ce69-490e-9cca-a700df6a81ba)
