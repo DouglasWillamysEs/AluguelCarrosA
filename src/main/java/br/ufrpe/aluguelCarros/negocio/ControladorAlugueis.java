@@ -32,9 +32,9 @@ public class ControladorAlugueis {
 
         if(idReserva != 0) {
             Reserva reserva = ControladorReservas.getInstance().procurarReserva(idReserva);
-            String cpfUsuario = reserva.getCpf();
-
-            Usuario usuario = ControladorUsuario.getInstance().buscarUsuario(cpfUsuario);
+            if (reserva.getDataFim().isBefore(LocalDateTime.now())){
+                String cpfUsuario = reserva.getCpf();
+                Usuario usuario = ControladorUsuario.getInstance().buscarUsuario(cpfUsuario);
 
             if (usuario.getIdReservasAtivas().contains(idReserva)) {
                 int idCarro = reserva.getIdCarro();
@@ -48,6 +48,7 @@ public class ControladorAlugueis {
                 int idAluguel = usuario.getIdAlugueisAtivos().size() + 1;
                 usuario.addAluguelAtivo(idAluguel);
                 usuario.removerReservaAtiva(idReserva);
+            }
             }
         }
     }
@@ -79,6 +80,10 @@ public class ControladorAlugueis {
         }
     }
 }
+
+
+
+
 
 
 
