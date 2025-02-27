@@ -1,0 +1,36 @@
+package br.ufrpe.aluguelcarros.dados;
+
+import java.util.ArrayList;
+
+public class RepositorioChaves implements IRepositorioChaves{
+    private ArrayList<String> chaves;
+    private static RepositorioChaves instance;
+
+    public static RepositorioChaves getInstance() {
+        return instance;
+    }
+
+    public RepositorioChaves() {
+        chaves = new ArrayList<>();
+        chaves.add("12345678");
+    }
+
+    @Override
+    public void atribuirChave(String chave){
+        chaves.add(chave);
+    }
+
+    @Override
+    public void removerChave(String chave){
+        chaves.remove(chave);
+    }
+
+    @Override
+    public boolean existeChave(String chave) {
+        return chaves.contains(chave);
+    }
+
+
+
+
+}
