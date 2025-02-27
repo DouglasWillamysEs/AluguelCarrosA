@@ -14,5 +14,7 @@ public interface IRepositorioCarros {
     ArrayList<String> retornarMarcas();
     ArrayList<String> retornarCores();
     ArrayList<String> retornarModelos();
+    ArrayList<Carro> retornarTodosOsCarros();
 
 }
+
