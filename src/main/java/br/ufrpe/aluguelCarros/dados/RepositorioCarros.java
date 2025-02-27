@@ -7,11 +7,13 @@ import br.ufrpe.aluguelcarros.negocio.beans.Carro;
 
 public class RepositorioCarros implements IRepositorioCarros {
     private ArrayList<Carro> carros;
+    private ArrayList<String> marcas;
 
     private static RepositorioCarros instance;
 
     public RepositorioCarros() {
         carros = new ArrayList<>();
+        marcas = new ArrayList<>();
     }
 
     public static RepositorioCarros getInstance() {
@@ -22,8 +24,9 @@ public class RepositorioCarros implements IRepositorioCarros {
     }
 
     @Override
-    public void cadastrarCarro(int id, String cor, String marca, String modelo, double preco, boolean statusPagamento) {
-        Carro novoCarro = new Carro(id, cor, marca, modelo, preco, statusPagamento);
+    public void cadastrarCarro(String cor, String marca, String modelo, double preco, boolean disponivel) {
+        Carro novoCarro = new Carro(cor, marca, modelo, preco, disponivel);
+        novoCarro.setId(carros.size() + 1);
         this.carros.add(novoCarro);
     }
 
@@ -47,10 +50,6 @@ public class RepositorioCarros implements IRepositorioCarros {
 
     @Override
     public Carro procurarCarro(int id) {
-        if (carros == null) {
-            return null;
-        }
-
         for (Carro carro : carros) {
             if (carro.getId() == id) {
                 return carro;
@@ -59,8 +58,10 @@ public class RepositorioCarros implements IRepositorioCarros {
         return null;
     }
 
+
+
     @Override
-    public ArrayList<Carro> procurarModelo(String modelo){
+    public ArrayList<Carro> procurarModelo(String modelo) {
         ArrayList<Carro> resultado = new ArrayList<>();
 
         for (Carro carro : carros) {
@@ -70,4 +71,39 @@ public class RepositorioCarros implements IRepositorioCarros {
         }
         return resultado;
     }
+
+    @Override
+    public ArrayList<String> retornarCores() {
+        ArrayList<String> cores = new ArrayList<>();
+        for (Carro carro : carros) {
+            if (!cores.contains(carro.getCor())) {
+                cores.add(carro.getCor());
+            }
+        }
+        return cores;
+    }
+
+    @Override
+    public ArrayList<String> retornarMarcas() {
+        for(Carro carro : carros) {
+            marcas.add(carro.getMarca());
+        }
+        return marcas;
+    }
+
+    @Override
+    public ArrayList<String> retornarModelos() {
+        ArrayList<String> modelos = new ArrayList<>();
+        for (Carro carro : carros) {
+            if (!modelos.contains(carro.getModelo())) {
+                modelos.add(carro.getModelo());
+            }
+        }
+        return modelos;
+    }
+
+
+
+
+
 }
