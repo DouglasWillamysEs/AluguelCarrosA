@@ -13,7 +13,6 @@ public class RepositorioCarros implements IRepositorioCarros {
 
     public RepositorioCarros() {
         carros = new ArrayList<>();
-        marcas = new ArrayList<>();
     }
 
     public static RepositorioCarros getInstance() {
@@ -58,8 +57,6 @@ public class RepositorioCarros implements IRepositorioCarros {
         return null;
     }
 
-
-
     @Override
     public ArrayList<Carro> procurarModelo(String modelo) {
         ArrayList<Carro> resultado = new ArrayList<>();
@@ -70,6 +67,11 @@ public class RepositorioCarros implements IRepositorioCarros {
             }
         }
         return resultado;
+    }
+
+    @Override
+    public ArrayList<Carro> retornarTodosOsCarros(){
+        return carros;
     }
 
     @Override
@@ -85,8 +87,11 @@ public class RepositorioCarros implements IRepositorioCarros {
 
     @Override
     public ArrayList<String> retornarMarcas() {
-        for(Carro carro : carros) {
-            marcas.add(carro.getMarca());
+        ArrayList<String> marcas = new ArrayList<>();
+        for (Carro carro : carros) {
+            if (!marcas.contains(carro.getMarca())) {
+                marcas.add(carro.getMarca());
+            }
         }
         return marcas;
     }
@@ -101,9 +106,5 @@ public class RepositorioCarros implements IRepositorioCarros {
         }
         return modelos;
     }
-
-
-
-
-
 }
+
