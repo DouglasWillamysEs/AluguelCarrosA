@@ -1,0 +1,30 @@
+package br.ufrpe.aluguelcarros.GUI;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class ControladorReservaData {
+
+    @FXML
+    private Button btnCancelar;
+
+    @FXML
+    private Button btnContinuar;
+
+    @FXML
+    void cancelar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void continuar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void dpSelecionado(ActionEvent event) {
+
+    }
+
+}
